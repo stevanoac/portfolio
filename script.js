@@ -20,11 +20,62 @@ menuButton.addEventListener("click", () => {
 
 document.querySelectorAll("[data-carousel]").forEach((carousel) => {
   const image = carousel.querySelector(".carousel-image");
+  const imageTrigger = carousel.querySelector(".carousel-image-trigger");
   const status = carousel.querySelector(".carousel-status");
   const images = ["images/0.png", "images/1.png", "images/2.png"];
   let current = 0;
+  let lightbox;
 
-  const showImage = (nextIndex) => {
+  const createLightbox = () => {
+    lightbox = document.createElement("div");
+    lightbox.className = "lightbox";
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-modal", "true");
+    lightbox.setAttribute("aria-label", "Autumn project screenshot viewer");
+    lightbox.innerHTML = `
+      <button class="lightbox-button lightbox-close" type="button" aria-label="Close image viewer">×</button>
+      <div class="lightbox-content">
+        <button class="lightbox-button lightbox-previous" type="button" aria-label="Previous screenshot">←</button>
+        <div class="lightbox-image-wrap"><img class="lightbox-image" alt="" /></div>
+        <button class="lightbox-button lightbox-next" type="button" aria-label="Next screenshot">→</button>
+      </div>
+      <div class="lightbox-thumbnails" aria-label="Choose screenshot"></div>
+    `;
+    document.body.append(lightbox);
+    const thumbnails = lightbox.querySelector(".lightbox-thumbnails");
+    images.forEach((src, index) => {
+      const thumbnail = document.createElement("button");
+      thumbnail.className = "lightbox-thumbnail";
+      thumbnail.type = "button";
+      thumbnail.setAttribute("aria-label", `Show screenshot ${index + 1}`);
+      thumbnail.innerHTML = `<img src="${src}" alt="" />`;
+      thumbnail.addEventListener("click", () => showImage(index, true));
+      thumbnails.append(thumbnail);
+    });
+    lightbox.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
+    lightbox.querySelector(".lightbox-previous").addEventListener("click", () => showImage(current - 1, true));
+    lightbox.querySelector(".lightbox-next").addEventListener("click", () => showImage(current + 1, true));
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+  };
+
+  const openLightbox = () => {
+    if (!lightbox) createLightbox();
+    lightbox.classList.add("is-open");
+    document.body.classList.add("lightbox-open");
+    showImage(current, true);
+    lightbox.querySelector(".lightbox-close").focus();
+  };
+
+  const closeLightbox = () => {
+    if (!lightbox) return;
+    lightbox.classList.remove("is-open");
+    document.body.classList.remove("lightbox-open");
+    imageTrigger.focus();
+  };
+
+  function showImage(nextIndex, updateLightbox = false) {
     current = (nextIndex + images.length) % images.length;
     image.style.opacity = "0";
     window.setTimeout(() => {
@@ -33,8 +84,23 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
       status.textContent = `${String(current + 1).padStart(2, "0")} / ${String(images.length).padStart(2, "0")}`;
       image.style.opacity = "1";
     }, 120);
-  };
+    if (updateLightbox && lightbox) {
+      lightbox.querySelector(".lightbox-image").src = images[current];
+      lightbox.querySelector(".lightbox-image").alt = `Autumn project screenshot ${current + 1} of ${images.length}`;
+      lightbox.querySelectorAll(".lightbox-thumbnail").forEach((thumbnail, index) => {
+        thumbnail.classList.toggle("is-selected", index === current);
+      });
+    }
+  }
 
   carousel.querySelector(".carousel-previous").addEventListener("click", () => showImage(current - 1));
   carousel.querySelector(".carousel-next").addEventListener("click", () => showImage(current + 1));
+  imageTrigger.addEventListener("click", openLightbox);
+
+  document.addEventListener("keydown", (event) => {
+    if (!lightbox || !lightbox.classList.contains("is-open")) return;
+    if (event.key === "Escape") closeLightbox();
+    if (event.key === "ArrowLeft") showImage(current - 1, true);
+    if (event.key === "ArrowRight") showImage(current + 1, true);
+  });
 });

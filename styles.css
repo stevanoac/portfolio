@@ -128,10 +128,24 @@ a:hover { text-decoration: none; }
 .feature-list li::before { content: "+"; left: 0; position: absolute; }
 .project-carousel { align-items: center; display: grid; gap: 14px; grid-template-columns: 34px minmax(0, 1fr) 34px; margin-top: 12px; max-width: 820px; position: relative; }
 .carousel-frame { align-items: center; background: #f5f5f5; border: 1px solid var(--line); display: flex; height: 430px; justify-content: center; overflow: hidden; }
+.carousel-image-trigger { background: transparent; border: 0; cursor: zoom-in; display: block; height: 100%; padding: 0; width: 100%; }
 .carousel-image { display: block; height: 100%; object-fit: contain; opacity: 1; transition: opacity .18s ease; width: 100%; }
 .carousel-button { align-items: center; background: transparent; border: 1px solid var(--line); color: var(--ink); cursor: pointer; display: flex; font-size: 20px; height: 34px; justify-content: center; padding: 0; transition: background-color .2s ease; width: 34px; }
 .carousel-button:hover, .carousel-button:focus-visible { background: var(--hover); }
 .carousel-status { color: var(--muted); font-size: 12px; grid-column: 2; margin: 8px 0 0; text-align: center; }
+.lightbox { align-items: center; background: rgba(17, 17, 17, .74); backdrop-filter: blur(7px); display: flex; inset: 0; justify-content: center; opacity: 0; padding: 32px; position: fixed; transition: opacity .25s ease, visibility .25s ease; visibility: hidden; z-index: 10; }
+.lightbox.is-open { opacity: 1; visibility: visible; }
+.lightbox-content { align-items: center; display: grid; gap: 18px; grid-template-columns: 42px minmax(0, 1000px) 42px; max-height: 100%; width: min(1100px, 100%); }
+.lightbox-image-wrap { align-items: center; display: flex; height: min(72vh, 720px); justify-content: center; min-width: 0; }
+.lightbox-image { display: block; max-height: 100%; max-width: 100%; object-fit: contain; }
+.lightbox-button { align-items: center; background: rgba(255, 255, 255, .9); border: 0; color: var(--ink); cursor: pointer; display: flex; font-size: 24px; height: 42px; justify-content: center; width: 42px; }
+.lightbox-button:hover, .lightbox-button:focus-visible { background: #fff; }
+.lightbox-close { background: transparent; color: #fff; font-size: 28px; height: 38px; position: absolute; right: 22px; top: 18px; width: 38px; }
+.lightbox-thumbnails { bottom: 24px; display: flex; gap: 8px; justify-content: center; left: 50%; position: absolute; transform: translateX(-50%); }
+.lightbox-thumbnail { background: #fff; border: 2px solid transparent; cursor: pointer; height: 52px; opacity: .65; padding: 0; width: 72px; }
+.lightbox-thumbnail.is-selected { border-color: #fff; opacity: 1; }
+.lightbox-thumbnail img { height: 100%; object-fit: cover; width: 100%; }
+body.lightbox-open { overflow: hidden; }
 .hardware-intro { margin-bottom: 58px; }
 .collection-section { margin-top: 58px; }
 .collection-heading { align-items: baseline; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; margin-bottom: 18px; }
@@ -193,6 +207,11 @@ a:hover { text-decoration: none; }
   .project-carousel { gap: 8px; grid-template-columns: 30px minmax(0, 1fr) 30px; }
   .carousel-frame { height: 280px; }
   .carousel-button { height: 30px; width: 30px; }
+  .lightbox { padding: 18px; }
+  .lightbox-content { gap: 8px; grid-template-columns: 34px minmax(0, 1fr) 34px; }
+  .lightbox-button { font-size: 20px; height: 34px; width: 34px; }
+  .lightbox-image-wrap { height: 65vh; }
+  .lightbox-thumbnail { height: 42px; width: 58px; }
   .site-shell.dashboard-hidden { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 18px; padding: 20px 18px 50px; }
   .site-shell.dashboard-hidden .sidebar { border-bottom: 0; border-right: 1px solid var(--line); padding: 0 10px 0 0; }
   .site-shell.dashboard-hidden .main-content { padding: 0 0 0 24px; }
