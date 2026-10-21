@@ -17,3 +17,24 @@ menuButton.addEventListener("click", () => {
   menuButton.querySelector(".menu-icon").textContent = isOpen ? "+" : "−";
   directory.classList.toggle("is-open", !isOpen);
 });
+
+document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+  const image = carousel.querySelector(".carousel-image");
+  const status = carousel.querySelector(".carousel-status");
+  const images = ["images/0.png", "images/1.png", "images/2.png"];
+  let current = 0;
+
+  const showImage = (nextIndex) => {
+    current = (nextIndex + images.length) % images.length;
+    image.style.opacity = "0";
+    window.setTimeout(() => {
+      image.src = images[current];
+      image.alt = `Autumn project screenshot ${current + 1} of ${images.length}`;
+      status.textContent = `${String(current + 1).padStart(2, "0")} / ${String(images.length).padStart(2, "0")}`;
+      image.style.opacity = "1";
+    }, 120);
+  };
+
+  carousel.querySelector(".carousel-previous").addEventListener("click", () => showImage(current - 1));
+  carousel.querySelector(".carousel-next").addEventListener("click", () => showImage(current + 1));
+});
