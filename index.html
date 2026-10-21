@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Steven Claros — software builder, hardware tinkerer, and teacher." />
+    <title>Steven Claros — Home</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="site-shell">
+      <aside class="sidebar">
+        <div class="dashboard-header">
+          <a class="brand" href="index.html" aria-label="Steven Claros home"><span class="full-brand">steven claros</span><span class="mini-brand">sc</span></a>
+          <button class="dashboard-toggle" type="button" aria-expanded="true" aria-controls="dashboard" aria-label="Hide dashboard">
+            <span aria-hidden="true">«</span>
+          </button>
+        </div>
+
+        <div class="dashboard-body" id="dashboard">
+          <button class="menu-toggle" type="button" aria-expanded="true" aria-controls="site-menu" aria-label="Close pages menu">
+            <span>pages</span>
+            <span class="menu-icon" aria-hidden="true">−</span>
+          </button>
+          <nav class="directory is-open" id="site-menu" aria-label="Site directory">
+            <div class="directory-inner">
+              <a class="directory-link active" href="index.html">home</a>
+              <a class="directory-link" href="about/index.html">about</a>
+              <a class="directory-link" href="projects/index.html">projects</a>
+              
+              <a class="directory-link" href="hardware/index.html">hardware</a>
+              
+              
+              <a class="directory-link" href="contact/index.html">contact</a>
+            </div>
+          </nav>
+        </div>
+        <div class="sidebar-footer">
+          <p class="copyright">© 2026 Steven Claros</p>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <p class="eyebrow">Welcome to my website :)</p>
+        </header>
+
+        <section class="hero" id="home">
+          <p class="intro-line">On this site you can find a number of things:</p>
+          <p class="hero-copy">software backends, custom computers, teaching notes, personal projects, and whatever else I’m currently curious about.</p>
+          <p class="hero-copy">My primary engineering focus is on distributed game server systems, Java, and document databases. I believe the best way to get students interested in computer science is to peel back the layer of technology they already play with every day.</p>
+          <div class="quick-links">
+            <h1>Quick Links:</h1>
+            <ul>
+              <li><a href="#work">Browse my project archive →</a></li>
+              <li><a href="#work">Distributed Minecraft Game Engine &amp; MongoDB (Full Case Study) →</a></li>
+              <li><a href="projects/index.html">Browse the hardware collection →</a></li>
+              <li><a href="projects/index.html">Read about my projects →</a></li>
+            </ul>
+          </div>
+        </section>
+
+        <span id="about" aria-hidden="true"></span>
+
+        <section class="work-section" id="work">
+          <div class="section-heading">
+            <p class="section-kicker">A few things</p>
+            <p class="section-meta">01—03</p>
+          </div>
+          <div class="project-list">
+            <a class="project-row" href="contact/index.html">
+              <span class="project-number">01</span>
+              <span class="project-title">Distributed game systems</span>
+              <span class="project-description">Backends, player data, and tools</span>
+              <span class="project-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="project-row" href="contact/index.html">
+              <span class="project-number">02</span>
+              <span class="project-title">Custom computers</span>
+              <span class="project-description">Hardware assembled with intent</span>
+              <span class="project-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="project-row" href="contact/index.html">
+              <span class="project-number">03</span>
+              <span class="project-title">Computational thinking</span>
+              <span class="project-description">Making technical ideas feel close</span>
+              <span class="project-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </section>
+
+        <footer class="footer" id="contact">
+          <p>Have a question or a good idea?</p>
+          <a class="email-link" href="mailto:stevanoclaros@gmail.com">stevanoclaros@gmail.com <span aria-hidden="true">↗</span></a>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
