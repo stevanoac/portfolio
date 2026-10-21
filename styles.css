@@ -112,6 +112,17 @@ a:hover { text-decoration: none; }
 .page-content { padding-top: 90px; }
 .page-content h1 { font-size: 34px; font-weight: 400; margin: 0 0 28px; }
 .page-content p { line-height: 1.7; max-width: 700px; }
+.project-index { display: grid; gap: 58px; grid-template-columns: minmax(0, 1.25fr) minmax(220px, .75fr); margin-top: 62px; }
+.project-column-heading { align-items: baseline; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; }
+.project-column-heading h2 { font-size: 21px; font-weight: 400; margin: 0 0 9px; }
+.project-column-heading span, .project-year h3 { color: var(--muted); font-size: 13px; font-weight: 400; }
+.project-year { margin-top: 30px; }
+.project-year h3 { border-bottom: 1px solid var(--line); margin: 0; padding-bottom: 7px; }
+.project-entry { border-bottom: 1px solid var(--line); display: block; padding: 14px 9px 14px 0; transition: background-color .2s ease, padding .2s ease; }
+.project-entry:hover { background: var(--hover); padding-left: 9px; }
+.project-entry-title { display: block; font-size: 16px; font-weight: 700; }
+.project-entry-description { color: var(--muted); display: block; font-size: 13px; margin-top: 3px; }
+.project-wip .project-entry-title { font-style: italic; font-weight: 400; }
 .hardware-intro { margin-bottom: 58px; }
 .collection-section { margin-top: 58px; }
 .collection-heading { align-items: baseline; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; margin-bottom: 18px; }
@@ -169,6 +180,7 @@ a:hover { text-decoration: none; }
   .now-section { grid-template-columns: 1fr; }
   .collection-grid { grid-template-columns: 1fr; }
   .hardware-intro { margin-bottom: 36px; }
+  .project-index { gap: 48px; grid-template-columns: 1fr; margin-top: 42px; }
   .site-shell.dashboard-hidden { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 18px; padding: 20px 18px 50px; }
   .site-shell.dashboard-hidden .sidebar { border-bottom: 0; border-right: 1px solid var(--line); padding: 0 10px 0 0; }
   .site-shell.dashboard-hidden .main-content { padding: 0 0 0 24px; }
