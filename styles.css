@@ -24,7 +24,7 @@ a:hover { text-decoration: none; }
 .site-shell {
   display: grid;
   grid-template-columns: 250px minmax(0, 920px);
-  gap: 54px;
+  gap: 82px;
   margin: 0;
   max-width: 1280px;
   min-height: 100vh;
@@ -97,7 +97,9 @@ a:hover { text-decoration: none; }
 .site-shell.dashboard-hidden .sidebar-footer { opacity: 0; pointer-events: none; }
 .site-shell.dashboard-hidden .mini-brand { display: inline; }
 .site-shell.dashboard-hidden .dashboard-toggle { font-size: 22px; transform: rotate(180deg); }
-.site-shell.dashboard-hidden .dashboard-header { align-items: center; flex-direction: row; gap: 4px; justify-content: flex-start; }
+.site-shell.dashboard-hidden .dashboard-header { align-items: center; flex-direction: row; gap: 4px; justify-content: flex-start; white-space: nowrap; width: max-content; }
+.site-shell.dashboard-hidden .brand { display: inline-flex; }
+.site-shell.dashboard-hidden .dashboard-toggle { flex-shrink: 0; }
 
 .main-content { min-width: 0; padding: 30px 40px 70px 0; animation: page-enter .38s ease both; }
 .topbar { align-items: center; border-bottom: 0; display: flex; justify-content: space-between; }
