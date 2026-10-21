@@ -71,7 +71,7 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
 
   const updateImageDetails = () => {
     image.src = images[current];
-    image.alt = `Autumn project screenshot ${current + 1} of ${images.length}`;
+    image.alt = `Project screenshot ${current + 1} of ${images.length}`;
     status.textContent = `${String(current + 1).padStart(2, "0")} / ${String(images.length).padStart(2, "0")}`;
   };
 
@@ -80,7 +80,7 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     lightbox.className = "lightbox";
     lightbox.setAttribute("role", "dialog");
     lightbox.setAttribute("aria-modal", "true");
-    lightbox.setAttribute("aria-label", "Autumn project screenshot viewer");
+    lightbox.setAttribute("aria-label", "project screenshot viewer");
     lightbox.innerHTML = `
       <button class="lightbox-button lightbox-close" type="button" aria-label="Close image viewer">×</button>
       <div class="lightbox-content">
@@ -127,14 +127,14 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     image.style.opacity = "0";
     window.setTimeout(() => {
       image.src = images[current];
-      image.alt = `Autumn project screenshot ${current + 1} of ${images.length}`;
+      image.alt = `Project screenshot ${current + 1} of ${images.length}`;
       status.textContent = `${String(current + 1).padStart(2, "0")} / ${String(images.length).padStart(2, "0")}`;
       image.style.opacity = "1";
     }, 120);
     if (updateLightbox && lightbox) {
       lightbox.querySelector(".lightbox-image").src = images[current];
       lightbox.querySelector(".lightbox-image").alt =
-        `Autumn project screenshot ${current + 1} of ${images.length}`;
+        `Project screenshot ${current + 1} of ${images.length}`;
       lightbox
         .querySelectorAll(".lightbox-thumbnail")
         .forEach((thumbnail, index) => {
