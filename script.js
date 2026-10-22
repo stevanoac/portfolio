@@ -6,14 +6,20 @@ const directory = document.querySelector(".directory");
 dashboardButton.addEventListener("click", () => {
   const isOpen = dashboardButton.getAttribute("aria-expanded") === "true";
   dashboardButton.setAttribute("aria-expanded", String(!isOpen));
-  dashboardButton.setAttribute("aria-label", isOpen ? "Show dashboard" : "Hide dashboard");
+  dashboardButton.setAttribute(
+    "aria-label",
+    isOpen ? "Show dashboard" : "Hide dashboard",
+  );
   dashboard.classList.toggle("dashboard-hidden", isOpen);
 });
 
 menuButton.addEventListener("click", () => {
   const isOpen = menuButton.getAttribute("aria-expanded") === "true";
   menuButton.setAttribute("aria-expanded", String(!isOpen));
-  menuButton.setAttribute("aria-label", isOpen ? "Open pages menu" : "Close pages menu");
+  menuButton.setAttribute(
+    "aria-label",
+    isOpen ? "Open pages menu" : "Close pages menu",
+  );
   menuButton.querySelector(".menu-icon").textContent = isOpen ? "+" : "−";
   directory.classList.toggle("is-open", !isOpen);
 });
@@ -86,9 +92,15 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     `;
     document.body.append(lightbox);
     refreshThumbnails();
-    lightbox.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
-    lightbox.querySelector(".lightbox-previous").addEventListener("click", () => showImage(current - 1, true));
-    lightbox.querySelector(".lightbox-next").addEventListener("click", () => showImage(current + 1, true));
+    lightbox
+      .querySelector(".lightbox-close")
+      .addEventListener("click", closeLightbox);
+    lightbox
+      .querySelector(".lightbox-previous")
+      .addEventListener("click", () => showImage(current - 1, true));
+    lightbox
+      .querySelector(".lightbox-next")
+      .addEventListener("click", () => showImage(current + 1, true));
     lightbox.addEventListener("click", (event) => {
       if (event.target === lightbox) closeLightbox();
     });
@@ -119,15 +131,22 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     }, 120);
     if (updateLightbox && lightbox) {
       lightbox.querySelector(".lightbox-image").src = images[current];
-      lightbox.querySelector(".lightbox-image").alt = `Project screenshot ${current + 1} of ${images.length}`;
-      lightbox.querySelectorAll(".lightbox-thumbnail").forEach((thumbnail, index) => {
-        thumbnail.classList.toggle("is-selected", index === current);
-      });
+      lightbox.querySelector(".lightbox-image").alt =
+        `Project screenshot ${current + 1} of ${images.length}`;
+      lightbox
+        .querySelectorAll(".lightbox-thumbnail")
+        .forEach((thumbnail, index) => {
+          thumbnail.classList.toggle("is-selected", index === current);
+        });
     }
   }
 
-  carousel.querySelector(".carousel-previous").addEventListener("click", () => showImage(current - 1));
-  carousel.querySelector(".carousel-next").addEventListener("click", () => showImage(current + 1));
+  carousel
+    .querySelector(".carousel-previous")
+    .addEventListener("click", () => showImage(current - 1));
+  carousel
+    .querySelector(".carousel-next")
+    .addEventListener("click", () => showImage(current + 1));
   imageTrigger.addEventListener("click", openLightbox);
   document.addEventListener("keydown", (event) => {
     if (!lightbox || !lightbox.classList.contains("is-open")) return;
