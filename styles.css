@@ -743,6 +743,94 @@ body.lightbox-open {
     color: var(--ink);
 }
 
+.social-footer {
+    border-top: 1px solid var(--line);
+    margin-top: 58px;
+    padding-top: 14px;
+}
+.social-links {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+.social-link {
+    align-items: center;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    display: inline-flex;
+    height: 42px;
+    justify-content: center;
+    padding: 8px;
+    position: relative;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+    width: 42px;
+}
+button.social-link {
+    cursor: pointer;
+    font: inherit;
+}
+.social-link:hover,
+.social-link:focus-visible {
+    background: var(--hover);
+    border-color: #c4c4c4;
+    transform: translateY(-2px);
+}
+.social-link img {
+    display: block;
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+}
+.social-discord {
+    border-radius: 0;
+}
+.discord-bubble {
+    background: var(--active);
+    bottom: calc(100% + 10px);
+    color: #ffffff;
+    font-size: 12px;
+    left: 50%;
+    opacity: 0;
+    padding: 7px 10px;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(-50%, 6px);
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+    white-space: nowrap;
+}
+.discord-bubble::after {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--active);
+    bottom: -5px;
+    content: "";
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+}
+.discord-bubble.is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+.social-discord.is-shaking img {
+    animation: discord-shake 0.55s ease-in-out;
+}
+@keyframes discord-shake {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(-12deg); }
+    40% { transform: rotate(10deg); }
+    60% { transform: rotate(-8deg); }
+    80% { transform: rotate(6deg); }
+}
+
 .music-intro {
     color: var(--muted);
 }

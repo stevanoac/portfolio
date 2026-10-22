@@ -161,7 +161,9 @@ const audioPlayer = document.querySelector("[data-audio-player]");
 
 if (audioPlayer) {
   const audio = audioPlayer.querySelector("[data-audio-element]");
-  const tracks = [...audioPlayer.querySelectorAll("[data-track]")];
+  const tracks = [
+    ...audioPlayer.parentElement.querySelectorAll("[data-track]"),
+  ];
   const title = audioPlayer.querySelector("[data-track-title]");
   const date = audioPlayer.querySelector("[data-track-date]");
   const position = audioPlayer.querySelector("[data-track-position]");
@@ -271,6 +273,25 @@ if (audioPlayer) {
 }
 
 const errorField = document.querySelector("[data-error-field]");
+
+document.querySelectorAll("[data-discord-trigger]").forEach((trigger) => {
+  const bubble = trigger.querySelector("[data-discord-bubble]");
+  let hideTimer;
+
+  trigger.addEventListener("click", () => {
+    window.clearTimeout(hideTimer);
+    trigger.classList.remove("is-shaking");
+    bubble.classList.remove("is-visible");
+    window.requestAnimationFrame(() => {
+      trigger.classList.add("is-shaking");
+      bubble.classList.add("is-visible");
+    });
+    hideTimer = window.setTimeout(() => {
+      bubble.classList.remove("is-visible");
+      trigger.classList.remove("is-shaking");
+    }, 5000);
+  });
+});
 
 if (errorField) {
   const sound = document.querySelector("[data-error-sound]");
