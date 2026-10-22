@@ -159,6 +159,12 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
 
 const audioPlayer = document.querySelector("[data-audio-player]");
 
+document.querySelectorAll(".collection-section").forEach((section) => {
+  const count = section.querySelectorAll(".hardware-card").length;
+  const countLabel = section.querySelector(".collection-heading span");
+  if (countLabel) countLabel.textContent = String(count).padStart(2, "0");
+});
+
 if (audioPlayer) {
   const audio = audioPlayer.querySelector("[data-audio-element]");
   const tracks = [
