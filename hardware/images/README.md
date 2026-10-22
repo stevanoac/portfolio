@@ -12,5 +12,9 @@ Recommended:
 To display an image, replace the `.image-placeholder` block in the matching card with:
 
 ```html
-<img class="hardware-image" src="images/main-computer.png" alt="Main Computer">
+<img
+  class="hardware-image"
+  src="images/main-computer.png"
+  alt="Main Computer"
+/>
 ```
