@@ -160,3 +160,88 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
 
   discoveryPromise = discoverImages();
 });
+
+const truckStage = document.querySelector("[data-truck-stage]");
+
+if (truckStage) {
+  const truck = truckStage.querySelector(".truck");
+  const smokeLayer = truckStage.querySelector(".smoke-layer");
+  const smokeSource = truckStage.dataset.smokeSrc;
+  const pointer = { x: truckStage.clientWidth / 2, y: truckStage.clientHeight / 2 };
+  const position = { x: pointer.x, y: pointer.y };
+  const velocity = { x: 0, y: 0 };
+  let lastTime = performance.now();
+  let lastSmoke = 0;
+
+  const movePointer = (event) => {
+    const bounds = truckStage.getBoundingClientRect();
+    pointer.x = event.clientX - bounds.left;
+    pointer.y = event.clientY - bounds.top;
+  };
+
+  const spawnSmoke = (x, y, now) => {
+    if (now - lastSmoke < 95) return;
+    lastSmoke = now;
+    const particle = document.createElement("img");
+    const size = 20 + Math.random() * 28;
+    particle.className = "smoke-particle";
+    particle.src = smokeSource;
+    particle.alt = "";
+    particle.dataset.life = "0";
+    particle.dataset.x = String(x + (Math.random() - .5) * 12);
+    particle.dataset.y = String(y + (Math.random() - .5) * 10);
+    particle.dataset.vx = String(-8 - Math.random() * 16);
+    particle.dataset.vy = String(-8 - Math.random() * 18);
+    particle.style.left = `${particle.dataset.x}px`;
+    particle.style.top = `${particle.dataset.y}px`;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    smokeLayer.append(particle);
+  };
+
+  const animateTruck = (now) => {
+    const elapsed = Math.min((now - lastTime) / 1000, .05);
+    lastTime = now;
+    const bounds = truckStage.getBoundingClientRect();
+    const truckWidth = truck.offsetWidth;
+    const truckHeight = truck.offsetHeight;
+    const nextX = Math.max(truckWidth / 2, Math.min(bounds.width - truckWidth / 2, pointer.x));
+    const nextY = Math.max(truckHeight / 2, Math.min(bounds.height - truckHeight / 2, pointer.y));
+    const previousX = position.x;
+    const previousY = position.y;
+    position.x += (nextX - position.x) * Math.min(1, elapsed * 5);
+    position.y += (nextY - position.y) * Math.min(1, elapsed * 5);
+    velocity.x = (position.x - previousX) / Math.max(elapsed, .001);
+    velocity.y = (position.y - previousY) / Math.max(elapsed, .001);
+    const speed = Math.hypot(velocity.x, velocity.y);
+    const angle = speed > 3 ? Math.atan2(velocity.y, velocity.x) * 180 / Math.PI : 0;
+    truck.style.left = `${position.x}px`;
+    truck.style.top = `${position.y}px`;
+    truck.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+    if (speed > 12) spawnSmoke(position.x - truckWidth * .34, position.y + truckHeight * .18, now);
+
+    smokeLayer.querySelectorAll(".smoke-particle").forEach((particle) => {
+      const life = Number(particle.dataset.life) + elapsed;
+      const lifeRatio = life / 1.15;
+      if (lifeRatio >= 1) {
+        particle.remove();
+        return;
+      }
+      const x = Number(particle.dataset.x) + Number(particle.dataset.vx) * elapsed;
+      const y = Number(particle.dataset.y) + Number(particle.dataset.vy) * elapsed;
+      particle.dataset.life = String(life);
+      particle.dataset.x = String(x);
+      particle.dataset.y = String(y);
+      const scale = 1 + lifeRatio * 1.4;
+      particle.style.left = `${x}px`;
+      particle.style.top = `${y}px`;
+      particle.style.opacity = String(.42 * (1 - lifeRatio));
+      particle.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    });
+    requestAnimationFrame(animateTruck);
+  };
+
+  truckStage.addEventListener("pointermove", movePointer);
+  truckStage.addEventListener("pointerdown", movePointer);
+  requestAnimationFrame(animateTruck);
+}

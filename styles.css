@@ -496,6 +496,52 @@ a:focus-visible {
 body.lightbox-open {
     overflow: hidden;
 }
+.truck-page {
+    cursor: none;
+}
+.truck-page a,
+.truck-page button {
+    cursor: none;
+}
+.truck-stage {
+    background: #f7f7f7;
+    border: 1px solid var(--line);
+    height: min(52vh, 500px);
+    margin-top: 34px;
+    min-height: 300px;
+    overflow: hidden;
+    position: relative;
+    touch-action: none;
+}
+.truck {
+    left: 50%;
+    max-width: min(330px, 42vw);
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: 50% 50%;
+    user-select: none;
+    width: 330px;
+    will-change: left, top, transform;
+    z-index: 2;
+}
+.smoke-layer {
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+}
+.smoke-particle {
+    height: 34px;
+    object-fit: contain;
+    opacity: .45;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    user-select: none;
+    width: 34px;
+    will-change: left, top, opacity, transform;
+}
 .hardware-intro {
     margin-bottom: 58px;
 }
