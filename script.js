@@ -157,6 +157,114 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
   discoveryPromise = discoverImages();
 });
 
+const audioPlayer = document.querySelector("[data-audio-player]");
+
+if (audioPlayer) {
+  const audio = audioPlayer.querySelector("[data-audio-element]");
+  const tracks = [...audioPlayer.querySelectorAll("[data-track]")];
+  const title = audioPlayer.querySelector("[data-track-title]");
+  const date = audioPlayer.querySelector("[data-track-date]");
+  const position = audioPlayer.querySelector("[data-track-position]");
+  const progress = audioPlayer.querySelector("[data-progress]");
+  const currentTime = audioPlayer.querySelector("[data-current-time]");
+  const duration = audioPlayer.querySelector("[data-duration]");
+  const playButton = audioPlayer.querySelector("[data-play]");
+  const volume = audioPlayer.querySelector("[data-volume]");
+  const message = audioPlayer.querySelector("[data-player-message]");
+  const lyrics = audioPlayer.querySelector("[data-lyrics]");
+  let currentTrack = 0;
+
+  const formatTime = (seconds) => {
+    if (!Number.isFinite(seconds)) return "0:00";
+    const minutes = Math.floor(seconds / 60);
+    const remainder = Math.floor(seconds % 60).toString().padStart(2, "0");
+    return `${minutes}:${remainder}`;
+  };
+
+  const updateProgress = () => {
+    currentTime.textContent = formatTime(audio.currentTime);
+    duration.textContent = formatTime(audio.duration);
+    progress.max = Number.isFinite(audio.duration) ? audio.duration : 0;
+    progress.value = audio.currentTime || 0;
+  };
+
+  const selectTrack = (index, shouldPlay = false) => {
+    currentTrack = (index + tracks.length) % tracks.length;
+    const track = tracks[currentTrack];
+    audio.pause();
+    audio.src = track.dataset.src;
+    audio.load();
+    title.textContent = track.dataset.title;
+    date.textContent = track.dataset.date;
+    position.textContent = `${String(currentTrack + 1).padStart(2, "0")} / ${String(tracks.length).padStart(2, "0")}`;
+    lyrics.textContent =
+      track.querySelector(".track-lyrics-source")?.textContent.trim() ||
+      "Lyrics have not been added yet.";
+    tracks.forEach((item, index) =>
+      item.classList.toggle("is-selected", index === currentTrack),
+    );
+    currentTime.textContent = "0:00";
+    duration.textContent = "0:00";
+    progress.value = 0;
+    progress.max = 0;
+    playButton.textContent = "▶";
+    playButton.setAttribute("aria-label", "Play");
+    message.textContent = `Add ${track.dataset.src} to start listening.`;
+    message.classList.remove("is-ready");
+    if (shouldPlay) audio.play().catch(() => {});
+  };
+
+  tracks.forEach((track, index) => {
+    track.addEventListener("click", () => selectTrack(index));
+  });
+  audioPlayer
+    .querySelector("[data-track-previous]")
+    .addEventListener("click", () => selectTrack(currentTrack - 1));
+  audioPlayer
+    .querySelector("[data-track-next]")
+    .addEventListener("click", () => selectTrack(currentTrack + 1));
+  playButton.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.play().catch(() => {
+        message.textContent = "This track could not be played yet.";
+      });
+    } else {
+      audio.pause();
+    }
+  });
+  audioPlayer.querySelectorAll("[data-seek]").forEach((button) => {
+    button.addEventListener("click", () => {
+      audio.currentTime = Math.max(
+        0,
+        Math.min(audio.duration || 0, audio.currentTime + Number(button.dataset.seek)),
+      );
+    });
+  });
+  progress.addEventListener("input", () => {
+    audio.currentTime = Number(progress.value);
+  });
+  volume.addEventListener("input", () => {
+    audio.volume = Number(volume.value);
+  });
+  audio.addEventListener("loadedmetadata", updateProgress);
+  audio.addEventListener("timeupdate", updateProgress);
+  audio.addEventListener("play", () => {
+    playButton.textContent = "Ⅱ";
+    playButton.setAttribute("aria-label", "Pause");
+    message.classList.add("is-ready");
+  });
+  audio.addEventListener("pause", () => {
+    playButton.textContent = "▶";
+    playButton.setAttribute("aria-label", "Play");
+  });
+  audio.addEventListener("ended", () => selectTrack(currentTrack + 1, true));
+  audio.addEventListener("error", () => {
+    message.textContent = `Add ${tracks[currentTrack].dataset.src} to start listening.`;
+    message.classList.remove("is-ready");
+  });
+  selectTrack(0);
+}
+
 const errorField = document.querySelector("[data-error-field]");
 
 if (errorField) {
