@@ -497,25 +497,26 @@ body.lightbox-open {
     overflow: hidden;
 }
 .error-page {
-    cursor: none;
+    cursor: auto;
 }
 .error-page a,
 .error-page button {
-    cursor: none;
+    cursor: pointer;
 }
 .error-field {
-    height: min(52vh, 500px);
-    margin-top: 34px;
-    min-height: 300px;
+    height: 100vh;
+    inset: 0;
     overflow: hidden;
-    position: relative;
+    pointer-events: none;
+    position: fixed;
+    z-index: 0;
 }
 .floating-404 {
     background: transparent;
     border: 0;
     color: #989898;
-    cursor: none;
-    font-size: clamp(22px, 4vw, 48px);
+    cursor: pointer;
+    font-size: clamp(16px, 2.5vw, 32px);
     font-weight: 700;
     line-height: 1;
     padding: 14px;
@@ -523,6 +524,14 @@ body.lightbox-open {
     transform: translate(-50%, -50%);
     transition: color .2s ease, opacity .45s ease, transform .45s ease;
     user-select: none;
+    pointer-events: auto;
+    z-index: 0;
+}
+.error-page .site-shell,
+.error-page .main-content,
+.error-page .sidebar {
+    position: relative;
+    z-index: 1;
 }
 .floating-404:hover,
 .floating-404:focus-visible {
