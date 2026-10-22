@@ -753,11 +753,11 @@ body.lightbox-open {
     padding: 2px 4px;
 }
 .audio-player {
-    border-bottom: 1px solid var(--line);
-    border-top: 1px solid var(--line);
+    background: #fafafa;
+    border: 1px solid var(--line);
     margin-top: 54px;
     max-width: 760px;
-    padding: 24px 0 28px;
+    padding: 26px 28px 28px;
 }
 .player-heading,
 .player-progress,
@@ -819,9 +819,10 @@ body.lightbox-open {
     width: 28px;
 }
 .player-control {
-    height: 40px;
-    min-width: 40px;
-    padding: 0 10px;
+    border-color: var(--ink);
+    height: 38px;
+    min-width: 58px;
+    padding: 0 12px;
 }
 .player-control:hover,
 .player-arrow:hover {
@@ -879,8 +880,25 @@ body.lightbox-open {
     padding-top: 14px;
 }
 .lyrics-panel summary {
+    align-items: center;
     cursor: pointer;
+    display: flex;
     font-size: 14px;
+    justify-content: space-between;
+    list-style: none;
+    max-width: 520px;
+}
+.lyrics-panel summary::-webkit-details-marker {
+    display: none;
+}
+.lyrics-panel summary::after {
+    color: var(--muted);
+    content: "+";
+    font-size: 18px;
+    line-height: 1;
+}
+.lyrics-panel[open] summary::after {
+    content: "−";
 }
 .lyrics-panel [data-lyrics] {
     color: var(--muted);
@@ -1029,6 +1047,9 @@ body.lightbox-open {
     .player-heading {
         align-items: flex-start;
         flex-direction: column;
+    }
+    .audio-player {
+        padding: 22px 18px 24px;
     }
     .track-switcher {
         align-self: stretch;

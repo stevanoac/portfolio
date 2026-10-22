@@ -192,7 +192,7 @@ if (audioPlayer) {
     currentTrack = (index + tracks.length) % tracks.length;
     const track = tracks[currentTrack];
     audio.pause();
-    audio.src = track.dataset.src;
+    audio.src = new URL(track.dataset.src, window.location.href).href;
     audio.load();
     title.textContent = track.dataset.title;
     date.textContent = track.dataset.date;
@@ -209,7 +209,7 @@ if (audioPlayer) {
     progress.max = 0;
     playButton.textContent = "▶";
     playButton.setAttribute("aria-label", "Play");
-    message.textContent = `Add ${track.dataset.src} to start listening.`;
+    message.textContent = `Ready to play ${track.dataset.title}.`;
     message.classList.remove("is-ready");
     if (shouldPlay) audio.play().catch(() => {});
   };
@@ -253,13 +253,18 @@ if (audioPlayer) {
     playButton.setAttribute("aria-label", "Pause");
     message.classList.add("is-ready");
   });
+  audio.addEventListener("canplay", () => {
+    message.textContent = `Ready to play ${tracks[currentTrack].dataset.title}.`;
+    message.classList.add("is-ready");
+  });
   audio.addEventListener("pause", () => {
     playButton.textContent = "▶";
     playButton.setAttribute("aria-label", "Play");
   });
   audio.addEventListener("ended", () => selectTrack(currentTrack + 1, true));
   audio.addEventListener("error", () => {
-    message.textContent = `Add ${tracks[currentTrack].dataset.src} to start listening.`;
+    message.textContent =
+      `The track could not be decoded. Check that ${tracks[currentTrack].dataset.src} is a playable MP3.`;
     message.classList.remove("is-ready");
   });
   selectTrack(0);
