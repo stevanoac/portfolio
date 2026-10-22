@@ -44,8 +44,7 @@
                             ><a class="directory-link" href="/hardware/"
                                 >hardware</a
                             ><a class="directory-link" href="/contact/"
-                                >contact</a
-                            ><a class="directory-link" href="/music/">music</a>
+                                >contact</a>
                         </div>
                     </nav>
                 </div>
@@ -119,6 +118,57 @@
                             01 / 11
                         </p>
                     </div>
+
+                    <section class="audio-player" data-audio-player>
+                        <audio data-audio-element preload="metadata"></audio>
+                        <div class="player-heading">
+                            <div>
+                                <p class="player-label">now playing</p>
+                                <h2 data-track-title>Select a track</h2>
+                                <p class="track-date" data-track-date></p>
+                            </div>
+                            <div class="track-switcher" aria-label="Switch tracks">
+                                <button class="player-arrow" data-track-previous type="button" aria-label="Previous track">←</button>
+                                <span data-track-position>01 / 01</span>
+                                <button class="player-arrow" data-track-next type="button" aria-label="Next track">→</button>
+                            </div>
+                        </div>
+                        <div class="player-progress">
+                            <span data-current-time>0:00</span>
+                            <input data-progress type="range" min="0" max="0" value="0" step="0.1" aria-label="Track progress" />
+                            <span data-duration>0:00</span>
+                        </div>
+                        <div class="player-controls">
+                            <button class="player-control" data-seek="-10" type="button" aria-label="Rewind 10 seconds">↶ <span>10</span></button>
+                            <button class="player-control player-play" data-play type="button" aria-label="Play">▶</button>
+                            <button class="player-control" data-seek="10" type="button" aria-label="Forward 10 seconds"><span>10</span> ↷</button>
+                            <label class="volume-control">
+                                <span aria-hidden="true">volume</span>
+                                <input data-volume type="range" min="0" max="1" value="1" step="0.01" aria-label="Volume" />
+                            </label>
+                        </div>
+                        <details class="lyrics-panel">
+                            <summary>lyrics</summary>
+                            <div data-lyrics>Lyrics will appear here when you add them.</div>
+                        </details>
+                        <p class="player-message" data-player-message>
+                            Add your track file to this project's music folder to start listening.
+                        </p>
+                    </section>
+
+                    <section class="track-library" aria-labelledby="track-list-title">
+                        <div class="section-heading">
+                            <p class="section-kicker">archive</p>
+                            <h2 id="track-list-title">tracks</h2>
+                        </div>
+                        <div class="track-list">
+                            <button class="track-item is-selected" data-track data-src="music/track-01.mp3" data-title="track one" data-date="2026" type="button">
+                                <span><strong>track one</strong><small>2026</small></span>
+                                <span aria-hidden="true">↗</span>
+                                <span class="track-lyrics-source" hidden>Add lyrics for track one here.</span>
+                            </button>
+                        </div>
+                    </section>
                 </section>
             </main>
         </div>
