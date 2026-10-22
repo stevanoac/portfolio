@@ -496,51 +496,46 @@ a:focus-visible {
 body.lightbox-open {
     overflow: hidden;
 }
-.truck-page {
+.error-page {
     cursor: none;
 }
-.truck-page a,
-.truck-page button {
+.error-page a,
+.error-page button {
     cursor: none;
 }
-.truck-stage {
-    background: #f7f7f7;
-    border: 1px solid var(--line);
+.error-field {
     height: min(52vh, 500px);
     margin-top: 34px;
     min-height: 300px;
     overflow: hidden;
     position: relative;
-    touch-action: none;
 }
-.truck {
-    left: 50%;
-    max-width: min(330px, 42vw);
+.floating-404 {
+    background: transparent;
+    border: 0;
+    color: #989898;
+    cursor: none;
+    font-size: clamp(22px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1;
+    padding: 14px;
     position: absolute;
-    top: 50%;
     transform: translate(-50%, -50%);
-    transform-origin: 50% 50%;
+    transition: color .2s ease, opacity .45s ease, transform .45s ease;
     user-select: none;
-    width: 330px;
-    will-change: left, top, transform;
-    z-index: 2;
 }
-.smoke-layer {
-    inset: 0;
-    overflow: hidden;
+.floating-404:hover,
+.floating-404:focus-visible {
+    color: #666;
+}
+.floating-404.is-collected {
+    opacity: 0;
     pointer-events: none;
-    position: absolute;
-    z-index: 1;
+    transform: translate(-50%, -50%) scale(.4) rotate(18deg);
 }
-.smoke-particle {
-    height: 34px;
-    object-fit: contain;
-    opacity: .45;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    user-select: none;
-    width: 34px;
-    will-change: left, top, opacity, transform;
+@keyframes float-404 {
+    from { margin: -8px 0 0 -6px; }
+    to { margin: 8px 0 0 6px; }
 }
 .hardware-intro {
     margin-bottom: 58px;
