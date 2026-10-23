@@ -160,9 +160,50 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
 const audioPlayer = document.querySelector("[data-audio-player]");
 
 document.querySelectorAll(".collection-section").forEach((section) => {
-  const count = section.querySelectorAll(".hardware-card").length;
+  const grid = section.querySelector(".collection-grid");
+  const cards = [...section.querySelectorAll(".hardware-card")];
+  const count = cards.length;
   const countLabel = section.querySelector(".collection-heading span");
   if (countLabel) countLabel.textContent = String(count).padStart(2, "0");
+
+  if (!grid || count <= 3) return;
+
+  const carousel = document.createElement("div");
+  carousel.className = "hardware-carousel";
+  carousel.innerHTML = `
+    <button class="carousel-button hardware-previous" type="button" aria-label="Previous hardware item">←</button>
+    <div class="hardware-carousel-viewport"><div class="hardware-carousel-track"></div></div>
+    <button class="carousel-button hardware-next" type="button" aria-label="Next hardware item">→</button>
+    <p class="hardware-carousel-status" aria-live="polite">01 / ${String(count).padStart(2, "0")}</p>
+  `;
+  const viewport = carousel.querySelector(".hardware-carousel-viewport");
+  const track = carousel.querySelector(".hardware-carousel-track");
+  const status = carousel.querySelector(".hardware-carousel-status");
+  const previous = carousel.querySelector(".hardware-previous");
+  const next = carousel.querySelector(".hardware-next");
+  let current = 0;
+
+  cards.forEach((card) => track.append(card));
+  grid.replaceWith(carousel);
+
+  const showCard = (index) => {
+    const visibleCards =
+      Number.parseInt(
+        window
+          .getComputedStyle(viewport)
+          .getPropertyValue("--hardware-visible"),
+        10,
+      ) || 3;
+    const lastStart = Math.max(0, count - visibleCards);
+    current = (index + lastStart + 1) % (lastStart + 1);
+    track.style.transform = `translateX(-${current * (100 / visibleCards)}%)`;
+    status.textContent = `${String(current + 1).padStart(2, "0")} / ${String(count).padStart(2, "0")}`;
+  };
+
+  previous.addEventListener("click", () => showCard(current - 1));
+  next.addEventListener("click", () => showCard(current + 1));
+  window.addEventListener("resize", () => showCard(current));
+  showCard(0);
 });
 
 if (audioPlayer) {
