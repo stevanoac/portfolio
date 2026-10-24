@@ -212,6 +212,8 @@ if (audioPlayer) {
     ...audioPlayer.parentElement.querySelectorAll("[data-track]"),
   ];
   const title = audioPlayer.querySelector("[data-track-title]");
+  const cover = audioPlayer.querySelector("[data-track-cover]");
+  const nowExplicit = audioPlayer.querySelector("[data-now-explicit]");
   const date = audioPlayer.querySelector("[data-track-date]");
   const position = audioPlayer.querySelector("[data-track-position]");
   const progress = audioPlayer.querySelector("[data-progress]");
@@ -246,6 +248,14 @@ if (audioPlayer) {
     audio.src = new URL(track.dataset.src, window.location.href).href;
     audio.load();
     title.textContent = track.dataset.title;
+    nowExplicit.hidden = track.dataset.explicit !== "true";
+    if (track.dataset.cover) {
+      cover.src = new URL(track.dataset.cover, window.location.href).href;
+      cover.alt = `${track.dataset.title} cover`;
+      cover.hidden = false;
+    } else {
+      cover.hidden = true;
+    }
     date.textContent = track.dataset.date;
     position.textContent = `${String(currentTrack + 1).padStart(2, "0")} / ${String(tracks.length).padStart(2, "0")}`;
     lyrics.textContent =

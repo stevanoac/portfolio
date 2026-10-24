@@ -859,11 +859,22 @@ button.social-link {
     animation: discord-shake 0.55s ease-in-out;
 }
 @keyframes discord-shake {
-    0%, 100% { transform: rotate(0); }
-    20% { transform: rotate(-12deg); }
-    40% { transform: rotate(10deg); }
-    60% { transform: rotate(-8deg); }
-    80% { transform: rotate(6deg); }
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+    20% {
+        transform: rotate(-12deg);
+    }
+    40% {
+        transform: rotate(10deg);
+    }
+    60% {
+        transform: rotate(-8deg);
+    }
+    80% {
+        transform: rotate(6deg);
+    }
 }
 
 .music-intro {
@@ -894,6 +905,23 @@ button.social-link {
     justify-content: space-between;
     gap: 20px;
 }
+.track-now-playing {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+}
+.track-cover {
+    background: #f0f0f0;
+    display: block;
+    flex: 0 0 auto;
+    height: 54px;
+    object-fit: cover;
+    width: 54px;
+}
+.track-cover-large {
+    height: 82px;
+    width: 82px;
+}
 .player-label,
 .section-heading .section-kicker {
     color: var(--muted);
@@ -907,6 +935,15 @@ button.social-link {
     font-size: 21px;
     font-weight: 400;
     margin: 0;
+}
+.track-title-line {
+    align-items: center;
+    display: flex;
+    gap: 9px;
+}
+.track-title-line .explicit-marker {
+    font-size: 10px;
+    margin-right: 0;
 }
 .track-date {
     color: var(--muted);
@@ -1029,6 +1066,11 @@ button.social-link {
     padding: 16px 0 4px;
     white-space: pre-line;
 }
+.track-lyrics-source {
+    white-space: pre-wrap;
+    /* Optional: Use a monospace font if you want the exact look in your image */
+    font-family: monospace;
+}
 .player-message {
     color: var(--muted);
     font-size: 13px;
@@ -1066,6 +1108,67 @@ button.social-link {
         background-color 0.2s ease,
         padding 0.2s ease;
     width: 100%;
+}
+.track-item .track-cover {
+    height: 46px;
+    margin-right: 14px;
+    width: 46px;
+}
+.track-item-details {
+    flex: 1;
+}
+.explicit-marker {
+    align-items: center;
+    background: #4a4a4a;
+    border: 1px solid #a9a9a9;
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: help;
+    display: inline-flex;
+    font-size: 10px;
+    font-weight: 700;
+    height: 19px;
+    margin-right: 14px;
+    position: relative;
+    justify-content: center;
+    letter-spacing: 0;
+    line-height: 1;
+    width: 19px;
+}
+.explicit-marker:focus-visible {
+    outline: 2px solid var(--active);
+    outline-offset: 3px;
+}
+.explicit-tooltip {
+    background: var(--active);
+    bottom: calc(100% + 9px);
+    color: #ffffff;
+    font-size: 12px;
+    left: 50%;
+    opacity: 0;
+    padding: 6px 8px;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(-50%, 4px);
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+    white-space: nowrap;
+}
+.explicit-tooltip::after {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--active);
+    bottom: -5px;
+    content: "";
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+}
+.explicit-marker:hover .explicit-tooltip,
+.explicit-marker:focus .explicit-tooltip {
+    opacity: 1;
+    transform: translate(-50%, 0);
 }
 .track-item:last-child {
     border-bottom: 0;

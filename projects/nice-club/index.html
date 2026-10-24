@@ -132,10 +132,28 @@
                     <section class="audio-player" data-audio-player>
                         <audio data-audio-element preload="metadata"></audio>
                         <div class="player-heading">
-                            <div>
+                            <div class="track-now-playing">
+                                <img
+                                    class="track-cover track-cover-large"
+                                    data-track-cover
+                                    src="music/images/cantstop.jpg"
+                                    alt="can't stop cover"
+                                />
+                                <div>
                                 <p class="player-label">now playing</p>
-                                <h2 data-track-title>Select a track</h2>
+                                <h2 class="track-title-line">
+                                    <span data-track-title>can't stop</span>
+                                    <span
+                                        class="explicit-marker"
+                                        data-now-explicit
+                                        tabindex="0"
+                                        aria-label="Explicit Content"
+                                        >E<span class="explicit-tooltip"
+                                            >Explicit Content</span
+                                        ></span>
+                                </h2>
                                 <p class="track-date" data-track-date></p>
+                                </div>
                             </div>
                             <div
                                 class="track-switcher"
@@ -213,35 +231,7 @@
                         </div>
                         <details class="lyrics-panel">
                             <summary>lyrics</summary>
-                            <div data-lyrics>
-                                I'm drugged up in the basement, and I can't stop
-                                And I f*'ed up, I laced it, and I can't stop I'm
-                                off sum', I popped off, it's basic I can't stop,
-                                it's my fault I got safe bands, in a vault And
-                                for you, I'll give it, my all Hope I never take
-                                no dr*gs, hope I don't get addicted Yeah, I know
-                                some people who got f*'ed up with it Told my
-                                momma, I won't try none, not even a little bit
-                                Some people close me, no they can't stop I don't
-                                wanna be like them, don't wanna see them drop
-                                Pops said choose your friends wisely, so I had
-                                to give it a little thought Ay, now I'm thinking
-                                about everything I еver done And in my past I
-                                did some drugs for a littlе fun Now it's all
-                                catching up to me So I'm on the road and I miss
-                                my home And I seek these dr*gs at my all time
-                                low And I said some stuff, I can't control So I
-                                give it up, to my best of bros My girl maxing
-                                out my card limit 'cause she love to shop
-                                Everybody lil addicted, so I guess we just can't
-                                stop If my mom found out I hopped on something,
-                                I know her job would be her last thought I'm
-                                drugged up in the basement, and I can't stop And
-                                I f*'ed up, I laced it, and I can't stop I'm off
-                                sum', I popped off, it's basic I can't stop,
-                                it's my fault I got safe bands, in a vault And
-                                for you, I'll give it, my all
-                            </div>
+                            <div data-lyrics>test</div>
                         </details>
                         <p class="player-message" data-player-message>
                             missing music in the music folder.
@@ -261,46 +251,66 @@
                                 class="track-item is-selected"
                                 data-track
                                 data-src="./music/track-01.mp3"
+                                data-cover="music/images/cantstop.jpg"
                                 data-title="can't stop"
-                                data-date="2024"
+                                data-date="2025"
+                                data-explicit="true"
                                 type="button"
                             >
+                                <img
+                                    class="track-cover"
+                                    src="music/images/cantstop.jpg"
+                                    alt="can't stop cover"
+                                />
                                 <span
+                                    class="track-item-details"
                                     ><strong>can't stop</strong
-                                    ><small>2024</small></span
+                                    ><small>2025</small></span
                                 >
+                                <span
+                                    class="explicit-marker"
+                                    data-explicit-marker
+                                    tabindex="0"
+                                    aria-label="Explicit Content"
+                                    >E<span class="explicit-tooltip"
+                                        >Explicit Content</span
+                                    ></span>
                                 <span aria-hidden="true">↗</span>
                                 <span class="track-lyrics-source" hidden>
-                                    I'm drugged up in the basement, and I can't
-                                    stop And I f*'ed up, I laced it, and I can't
-                                    stop I'm off sum', I popped off, it's basic
-                                    I can't stop, it's my fault I got safe
-                                    bands, in a vault And for you, I'll give it,
-                                    my all Hope I never take no dr*gs, hope I
-                                    don't get addicted Yeah, I know some people
-                                    who got f*'ed up with it Told my momma, I
-                                    won't try none, not even a little bit Some
-                                    people close me, no they can't stop I don't
-                                    wanna be like them, don't wanna see them
-                                    drop Pops said choose your friends wisely,
-                                    so I had to give it a little thought Ay, now
-                                    I'm thinking about everything I еver done
-                                    And in my past I did some drugs for a littlе
-                                    fun Now it's all catching up to me So I'm on
-                                    the road and I miss my home And I seek these
-                                    dr*gs at my all time low And I said some
-                                    stuff, I can't control So I give it up, to
-                                    my best of bros My girl maxing out my card
-                                    limit 'cause she love to shop Everybody lil
-                                    addicted, so I guess we just can't stop If
-                                    my mom found out I hopped on something, I
-                                    know her job would be her last thought I'm
-                                    drugged up in the basement, and I can't stop
-                                    And I f*'ed up, I laced it, and I can't stop
-                                    I'm off sum', I popped off, it's basic I
-                                    can't stop, it's my fault I got safe bands,
-                                    in a vault And for you, I'll give it, my
-                                    all</span
+                                    I'm drugged up in the basement, and I can't stop
+                                    And I fucked up, I laced it, and I can't stop
+                                    I'm off sum', I popped off, it's basic
+
+                                    I can't stop, it's my fault
+                                    I got safe bands, in a vault
+                                    And for you, I'll give it, my all
+
+                                    Hope I never take no drugs, hope I don't get addicted
+                                    Yeah, I know some people who got fucked up with it
+                                    Told my momma, I won't try none, not even a little bit
+                                    Some people close me, no they can't stop
+                                    I don't wanna be like them, don't wanna see them drop
+                                    Pops said choose your friends wisely, so I had to give it a little thought
+
+                                    Ay, now I'm thinking about everything I еver done
+                                    And in my past I did some drugs for a littlе fun
+                                    Now it's all catching up to me
+                                    So I'm on the road and I miss my home
+                                    And I seek these drugs at my all time low
+                                    And I said some stuff, I can't control
+                                    So I give it up, to my best of bros
+
+                                    My girl maxing out my card limit 'cause she love to shop
+                                    Everybody lil addicted, so I guess we just can't stop
+                                    If my mom found out I hopped on something, I know her job would be her last thought
+
+                                    I'm drugged up in the basement, and I can't stop
+                                    And I fucked up, I laced it, and I can't stop
+                                    I'm off sum', I popped off, it's basic
+
+                                    I can't stop, it's my fault
+                                    I got safe bands, in a vault
+                                    And for you, I'll give it, my all</span
                                 >
                             </button>
                         </div>
@@ -308,19 +318,297 @@
                             <button
                                 class="track-item is-selected"
                                 data-track
-                                data-src="./music/track-02.m4a"
-                                data-title="untitled"
-                                data-date="2026"
+                                data-src="./music/home.m4a"
+                                data-cover="music/images/home.jpg"
+                                data-title="home"
+                                data-date="2025"
+                                data-explicit="true"
                                 type="button"
                             >
+                                <img
+                                    class="track-cover"
+                                    src="music/images/home.jpg"
+                                    alt="home cover"
+                                />
                                 <span
-                                    ><strong>untitled</strong
-                                    ><small>2026</small></span
+                                    class="track-item-details"
+                                    ><strong>home</strong
+                                    ><small>2025</small></span
                                 >
+                                <span
+                                    class="explicit-marker"
+                                    data-explicit-marker
+                                    tabindex="0"
+                                    aria-label="Explicit Content"
+                                    >E<span class="explicit-tooltip"
+                                        >Explicit Content</span
+                                    ></span>
                                 <span aria-hidden="true">↗</span>
-                                <span class="track-lyrics-source" hidden
-                                    >no lyrics to display at the moment.</span
+                                <span class="track-lyrics-source" hidden>
+                                    yeah
+                                    yeah, ooh, man fuck
+                                    tell brett i miss my home
+                                    but brett it's been so long
+                                    look how far we've gone
+                                    just look how far we've gone
+
+                                    but you're the one that made me get so distant
+                                    man this love shit getting so inconsistent
+                                    and i feel like i can do better
+                                    but i love seeing you in my sweater
+                                    favorite color, heather gray
+                                    bae you look great today
+                                    great today
+
+                                    yeah, each day don't get better
+                                    and i'm so damn bitter
+                                    wish i could've done better
+                                    but now you're gone for ever
+                                    and i don't know what to do
+                                    i lost myself in you
+                                    i lost myself in you
+                                </span>
+                            </button>
+                        </div>
+                        <div class="track-list">
+                            <button
+                                class="track-item is-selected"
+                                data-track
+                                data-src="./music/bad music.m4a"
+                                data-cover="music/images/placeholder.jpg"
+                                data-title="bad music"
+                                data-date="2025"
+                                data-explicit="true"
+                                type="button"
+                            >
+                                <img
+                                    class="track-cover"
+                                    src="music/images/placeholder.jpg"
+                                    alt="bad music"
+                                />
+                                <span
+                                    class="track-item-details"
+                                    ><strong>bad music</strong
+                                    ><small>2025</small></span
                                 >
+                                <span
+                                    class="explicit-marker"
+                                    data-explicit-marker
+                                    tabindex="0"
+                                    aria-label="Explicit Content"
+                                    >E<span class="explicit-tooltip"
+                                        >Explicit Content</span
+                                    ></span>
+                                <span aria-hidden="true">↗</span>
+                                <span class="track-lyrics-source" hidden>
+                                    your phone ringing
+                                    your phone ringing
+                                    hello pick up the phone
+
+                                    we the worst music
+                                    we only make shitty music records
+
+                                    true, it's true
+                                    it's true
+                                    it's rich coming from you
+                                    oh, it's true
+                                    we only make shitty music
+                                    i hope that you get used to it
+
+                                    i feel bad for whoever made this beat, ay
+                                    i feel bad for whoever made this beat, ay
+                                    i feel bad for whoever made this beat, ay
+                                    i feel bad for whoever made this beat
+                                    i feel bad for whoever made this beat
+                                    i feel bad for whoever made this beat, ay
+                                    i feel bad for whoever made this beat
+                                    i feel bad for whoever made this beat, ay
+                                    fucking up everything i see
+                                    damn, so i'm loud nobody can sleep
+                                    man i love this beat
+                                    man i love this beat, ay
+                                    man i love this beat
+                                    man this shit so tough, ain't nobody can compete
+                                    i ain't from the streets, but i ain't sweet
+                                    if you want some, i'll bring my grand fleet
+                                    and man i'm not alone, so give me my throne
+                                    ay, ay, ay
+                                    why the beat switch
+                                    you heard me, i said give me my throne
+                                    give me my throne
+                                    give me my throne
+
+                                    i feel bad for whoever made this beat
+                                    i feel bad for whoever made this beat
+                                    i feel bad for whoever made this, beat
+                                    i feel bad for whoever made this, beat
+                                    i feel bad for whoever made this beat
+                                    i feel bad for whoever made this beat
+                                    i feel bad for whoever made this beat
+                                    i feel bad, ay, i feel bad
+                                </span>
+                            </button>
+                        </div>
+                        <div class="track-list">
+                            <button
+                                class="track-item is-selected"
+                                data-track
+                                data-src="./music/idc_tho.wav"
+                                data-cover="music/images/placeholder.jpg"
+                                data-title="idc tho"
+                                data-date="2025"
+                                data-explicit="true"
+                                type="button"
+                            >
+                                <img
+                                    class="track-cover"
+                                    src="music/images/placeholder.jpg"
+                                    alt="idc tho"
+                                />
+                                <span
+                                    class="track-item-details"
+                                    ><strong>idc tho</strong
+                                    ><small>2025</small></span
+                                >
+                                <span
+                                    class="explicit-marker"
+                                    data-explicit-marker
+                                    tabindex="0"
+                                    aria-label="Explicit Content"
+                                    >E<span class="explicit-tooltip"
+                                        >Explicit Content</span
+                                    ></span>
+                                <span aria-hidden="true">↗</span>
+                                <span class="track-lyrics-source" hidden>
+                                    hop on the beat, cause i don't care tho
+                                    shoutout brian, he a
+                                    let's be real, let's be fair though
+                                    stevano drive 200 on the spedo
+                                    say i'm broke, i post a money spread though
+                                    we the worst music
+                                    tell your bitch do it
+                                    she got a man, but she told me "screw it"
+                                    off the bendaryls, i'm so fucking clueless
+                                    mix in the percs, like what am i doing
+
+                                    i'm off some drugs, but i don't know the name
+                                    bitch, i ain't hitting 3's like i'm dame
+                                    i ain't like d webber, jealous of brian and his florida weather
+                                    but i'm stuck here so i just snell it
+                                    i fell so in love, but i don't wanna spam
+                                    anything just to see you, let me get a squeeze of that big boob
+                                    baby you can feel up on my tube
+                                    been together so long, is there anything new to do
+
+                                    i been feeling hella loose
+                                    feeling like i can do anything i put my mind to
+                                    hop on the beat like woah
+
+                                    hop on the beat cause i don't care tho
+                                    hop on the beat, cause i don't care tho
+                                    shoutout brian, he a
+                                    let's be real, let's be fair though
+                                    stevano drive 200 on the spedo
+
+                                    we the worst music
+                                    tell your bitch do it
+                                    she got a man, but she told me "screw it"
+                                    off the bendaryls, i'm so fucking clueless
+                                    mix in the percs, like what am i doing
+
+                                    i'm off some drugs, but i don't know the name
+                                    bitch, i ain't hitting 3's like i'm dame
+                                    i ain't like d webber, jealous of brian and his florida weather
+                                    but i'm stuck here so i just snell it
+                                    i fell so in love, but i don't wanna spam
+                                    anything just to see you, let me get a squeeze of that big boob
+                                    baby you can feel up on my tube
+                                    been together so long, is there anything new to do
+                                </span>
+                            </button>
+                        </div>
+                        <div class="track-list">
+                            <button
+                                class="track-item is-selected"
+                                data-track
+                                data-src="./music/jeremy lin.m4a"
+                                data-cover="music/images/placeholder.jpg"
+                                data-title="jeremy lin"
+                                data-date="2025"
+                                data-explicit="true"
+                                type="button"
+                            >
+                                <img
+                                    class="track-cover"
+                                    src="music/images/placeholder.jpg"
+                                    alt="jeremy lin"
+                                />
+                                <span
+                                    class="track-item-details"
+                                    ><strong>jeremy lin</strong
+                                    ><small>2025</small></span
+                                >
+                                <span
+                                    class="explicit-marker"
+                                    data-explicit-marker
+                                    tabindex="0"
+                                    aria-label="Explicit Content"
+                                    >E<span class="explicit-tooltip"
+                                        >Explicit Content</span
+                                    ></span>
+                                <span aria-hidden="true">↗</span>
+                                <span class="track-lyrics-source" hidden>
+                                    we the worst
+                                    we the worst, ay
+                                    we the worst music, you gotta get used to it
+                                    ay, ay, ay
+                                    i'm off of that chronic
+                                    if i get word i'm on it
+                                    ay, ay, ay
+                                    i'm off of the perky
+                                    on the road eat jerky
+                                    ay, ay, ay
+                                    see the world i want it
+                                    sipping on some tonic
+                                    ay, ay, ay
+                                    i might change up my flow, pop it like a berry
+                                    in the game i carry, feel like i am terry
+                                    hopping in a cruise, why you sleep don't snooze
+                                    wake up from yo nap, won't lie tell no cap
+                                    this the new me settle in, i ain't fake like chaplin
+                                    calculate like Kaplan, i don't know what state i'm in
+                                    balling like i'm Jeremy lin, but i don't look Asian
+
+                                    time to find my flow, time to find my groove
+                                    saw my ex bitch on the road, tell that cow to move
+                                    nasa pc cause i used to spoof
+                                    hoppin on fort, cause i love to loot
+                                    shoutout my homeboy, he love to moon me
+                                    man i really miss
+                                    man it gets to a point where it's enough
+                                    hopping off the beat cause i had enough
+
+                                    we the worst
+                                    we the worst, ay
+                                    we the worst music, you gotta get used to it
+                                    ay, ay, ay
+                                    i'm off of that chronic
+                                    if i get word i'm on it
+                                    ay, ay, ay
+                                    i'm off of the perky
+                                    on the road eat jerky
+                                    ay, ay, ay
+                                    see the world i want it
+                                    sipping on some tonic
+                                    ay, ay, ay
+                                    i might change up my flow, pop it like a berry
+                                    in the game i carry, feel like i am terry
+                                    hopping in a cruise, why you sleep don't snooze
+                                    wake up from yo nap, won't lie tell no cap
+                                    this the new me settle in, i ain't fake like chaplin
+                                    calculate like Kaplan, i don't know what state i'm in
+                                    balling like i'm Jeremy lin, but i don't look Asian
+                                </span>
                             </button>
                         </div>
                     </section>
