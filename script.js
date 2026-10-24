@@ -197,7 +197,7 @@ document.querySelectorAll(".collection-section").forEach((section) => {
     const lastStart = Math.max(0, count - visibleCards);
     current = (index + lastStart + 1) % (lastStart + 1);
     track.style.transform = `translateX(-${current * (100 / visibleCards)}%)`;
-    status.textContent = `${String(current + 1).padStart(2, "0")} / ${String(count).padStart(2, "0")}`;
+    status.textContent = `${String(current + 1).padStart(2, "0")} / ${String(lastStart + 1).padStart(2, "0")}`;
   };
 
   previous.addEventListener("click", () => showCard(current - 1));
@@ -226,7 +226,9 @@ if (audioPlayer) {
   const formatTime = (seconds) => {
     if (!Number.isFinite(seconds)) return "0:00";
     const minutes = Math.floor(seconds / 60);
-    const remainder = Math.floor(seconds % 60).toString().padStart(2, "0");
+    const remainder = Math.floor(seconds % 60)
+      .toString()
+      .padStart(2, "0");
     return `${minutes}:${remainder}`;
   };
 
@@ -285,7 +287,10 @@ if (audioPlayer) {
     button.addEventListener("click", () => {
       audio.currentTime = Math.max(
         0,
-        Math.min(audio.duration || 0, audio.currentTime + Number(button.dataset.seek)),
+        Math.min(
+          audio.duration || 0,
+          audio.currentTime + Number(button.dataset.seek),
+        ),
       );
     });
   });
@@ -312,8 +317,7 @@ if (audioPlayer) {
   });
   audio.addEventListener("ended", () => selectTrack(currentTrack + 1, true));
   audio.addEventListener("error", () => {
-    message.textContent =
-      `The track could not be decoded. Check that ${tracks[currentTrack].dataset.src} is a playable MP3.`;
+    message.textContent = `The track could not be decoded. Check that ${tracks[currentTrack].dataset.src} is a playable MP3.`;
     message.classList.remove("is-ready");
   });
   selectTrack(0);
