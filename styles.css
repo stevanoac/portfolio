@@ -1139,10 +1139,11 @@ button.social-link {
     outline: 2px solid var(--active);
     outline-offset: 3px;
 }
-.explicit-tooltip {
+.explicit-marker::after {
     background: var(--active);
     bottom: calc(100% + 9px);
     color: #ffffff;
+    content: "Explicit Content";
     font-size: 12px;
     left: 50%;
     opacity: 0;
@@ -1155,20 +1156,26 @@ button.social-link {
         transform 0.2s ease;
     white-space: nowrap;
 }
-.explicit-tooltip::after {
+.explicit-marker::before {
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-top: 5px solid var(--active);
     bottom: -5px;
     content: "";
     left: 50%;
+    opacity: 0;
     position: absolute;
+    transition: opacity 0.2s ease;
     transform: translateX(-50%);
 }
-.explicit-marker:hover .explicit-tooltip,
-.explicit-marker:focus .explicit-tooltip {
+.explicit-marker:hover::after,
+.explicit-marker:focus::after {
     opacity: 1;
     transform: translate(-50%, 0);
+}
+.explicit-marker:hover::before,
+.explicit-marker:focus::before {
+    opacity: 1;
 }
 .track-item:last-child {
     border-bottom: 0;
